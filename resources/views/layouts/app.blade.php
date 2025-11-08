@@ -60,11 +60,11 @@
             </flux:sidebar.nav>
             <flux:sidebar.spacer />
             <flux:dropdown position="top" align="start" class="max-lg:hidden">
-                <flux:sidebar.profile name="Olivia Martin" avatar:color="auto"/>
+                <flux:sidebar.profile name="{{ auth()->user()->nombre_usu }}" avatar:color="auto"/>
                 <flux:menu>
                     <flux:menu.item icon="user-round">Mi perfil</flux:menu.item>
                     <flux:menu.separator />
-                    <flux:menu.item icon="log-out">Cerrar sesión</flux:menu.item>
+                    <livewire:cerrar-sesion />
                 </flux:menu>
             </flux:dropdown>
             </flux:sidebar>
@@ -73,11 +73,11 @@
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
             <flux:spacer />
             <flux:dropdown position="top" align="start">
-                <flux:profile initials="OM" avatar:color="auto" />
+                <flux:profile initials="{{ auth()->user()->iniciales }}" avatar:color="auto" />
                 <flux:menu>
                     <flux:menu.item icon="user-round">Mi perfil</flux:menu.item>
                     <flux:menu.separator />
-                    <flux:menu.item icon="log-out">Cerrar sesión</flux:menu.item>
+                    <livewire:cerrar-sesion />
                 </flux:menu>
             </flux:dropdown>
         </flux:header>
