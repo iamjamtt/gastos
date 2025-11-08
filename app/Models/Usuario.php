@@ -5,10 +5,10 @@ namespace App\Models;
 use App\Enums\EstadoEnum;
 use App\Enums\RolEnum;
 use App\Traits\BootUserById;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
     use SoftDeletes;
     use BootUserById;
@@ -43,8 +43,29 @@ class Usuario extends Model
         'eliminado_en' => 'datetime',
     ];
 
+    protected $hidden = [
+        'password_usu',
+        'remember_token',
+    ];
+
+    protected $appends = [
+        'iniciales',
+    ];
+
     public function inquilino()
     {
         return $this->belongsTo(Inquilino::class, 'id_inq', 'id_inq');
+    }
+
+    public function getInicialesAttribute()
+    {
+        $nombres = explode(' ', $this->nombre_usu);
+        $iniciales = '';
+
+        foreach ($nombres as $nombre) {
+            $iniciales .= strtoupper(substr($nombre, 0, 1));
+        }
+
+        return $iniciales;
     }
 }
