@@ -9,7 +9,6 @@ trait BootUserById
     protected static function boot()
     {
         parent::boot();
-        static::bootAuditoria();
 
         static::creating(function ($modelo) {
             $modelo->creado_por = Auth::id();
