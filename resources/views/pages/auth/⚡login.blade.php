@@ -1,7 +1,11 @@
 <?php
 
+use App\Models\Usuario;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 new
@@ -9,7 +13,29 @@ new
 #[Title('Login')]
 class extends Component
 {
-    //
+    #[Validate('required|string')]
+    public string $usuario = '';
+    #[Validate('required|string')]
+    public string $contrasena = '';
+    public bool $recordarme = false;
+
+    public function login()
+    {
+        $this->validate();
+
+        $usuario = Usuario::query()
+            ->where('usuario_usu', $this->usuario)
+            ->first();
+
+        if(!$usuario || !Hash::check($this->contrasena, $usuario->password_usu)) {
+            $this->addError('usuario', 'Credenciales incorrectas.');
+            return;
+        }
+
+        Auth::login($usuario, $this->recordarme);
+
+        return $this->redirectIntended(route('inicio.index'), navigate: true);
+    }
 };
 ?>
 
