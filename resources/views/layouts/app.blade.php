@@ -17,7 +17,7 @@
         {{-- @fluxAppearance --}}
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:sidebar sticky collapsible class="bg-zinc-50 dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-700">
+        <flux:sidebar sticky collapsible class="bg-zinc-100 dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-700">
             <flux:sidebar.header>
                 <flux:sidebar.brand
                     href="#"
@@ -38,8 +38,8 @@
                 </flux:sidebar.item>
                 <flux:sidebar.item
                     icon="wallet-cards"
-                    {{-- :href="route('inicio.index')" --}}
-                    {{-- :current="request()->routeIs('inicio.*')" --}}
+                    :href="route('control.index')"
+                    :current="request()->routeIs('control.*')"
                     wire:navigate
                 >
                     Control de Gastos
@@ -82,7 +82,7 @@
             </flux:dropdown>
         </flux:header>
 
-        <flux:main class="p-6!">
+        <flux:main class="p-0!">
             {{ $slot }}
         </flux:main>
 
