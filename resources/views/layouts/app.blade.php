@@ -25,7 +25,7 @@
                     logo:dark="{{ asset('assets/img/logo-dark.png') }}"
                     name="appGastos."
                 />
-                <flux:sidebar.collapse class="in-data-flux-sidebar-on-desktop:not-in-data-flux-sidebar-collapsed-desktop:-mr-2" />
+                <flux:sidebar.collapse class="in-data-flux-sidebar-on-desktop:not-in-data-flux-sidebar-collapsed-desktop:-mr-2" tooltip="Colapsar barra lateral" />
             </flux:sidebar.header>
             <flux:sidebar.nav>
                 <flux:sidebar.item
