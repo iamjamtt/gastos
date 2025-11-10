@@ -57,17 +57,17 @@ class extends Component
         <div class="flex flex-col gap-4">
             <flux:field>
                 <flux:label>Usuario</flux:label>
-                <flux:input wire:model="usuario" placeholder="Ingrese su usuario" />
+                <flux:input wire:model="usuario" placeholder="Ingrese su usuario" size="sm" />
                 <flux:error name="usuario" class="mt-0! text-xs!" />
             </flux:field>
             <flux:field>
                 <flux:label>Contraseña</flux:label>
-                <flux:input type="password" wire:model="contrasena" placeholder="Ingrese su contraseña" type="password" viewable />
+                <flux:input type="password" wire:model="contrasena" placeholder="Ingrese su contraseña" size="sm" type="password" viewable />
                 <flux:error name="contrasena" class="mt-0! text-xs!" />
             </flux:field>
         </div>
         <flux:checkbox label="Recordarme" wire:model="recordarme" />
-        <flux:button type="submit" variant="primary" class="w-full cursor-pointer">
+        <flux:button type="submit" variant="primary" class="w-full cursor-pointer" size="sm">
             Iniciar sesión
         </flux:button>
     </form>
