@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Enums\EstadoControlEnum;
 use App\Traits\BootUserById;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -39,9 +41,17 @@ class ControlMensual extends Model
         'eliminado_en' => 'datetime',
     ];
 
-
     public function controlInquilinos()
     {
         return $this->hasMany(ControlInquilino::class, 'id_con', 'id_con');
+    }
+
+    #[Scope]
+    protected function search(Builder $query, string $buscar): void
+    {
+        $query->where(function (Builder $subQuery) use ($buscar) {
+            $subQuery->where('titulo_con', 'like', "%{$buscar}%")
+                ->orWhere('observacion_con', 'like', "%{$buscar}%");
+        });
     }
 }
